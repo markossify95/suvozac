@@ -30,9 +30,9 @@ class ServiceProfile(models.Model):
     sat_hours_end = models.TimeField(blank=True, null=True)
     sun_hours_start = models.TimeField(blank=True, null=True)
     sun_hours_end = models.TimeField(blank=True, null=True)
-    geo_lat = models.DecimalField()
-    geo_long = models.DecimalField()
-    rate = models.DecimalField(default=0)
+    geo_lat = models.DecimalField(max_digits=8, decimal_places=6)
+    geo_long = models.DecimalField(max_digits=8, decimal_places=6)
+    rate = models.FloatField(default=0)
     """
         TODO: service images handling
         Also discuss about rate in this table and custom save() in SolvedMalfunction
@@ -93,8 +93,8 @@ class Region(models.Model):
         TODO: think about setting region choices
         think about region coordinates!!!
     """
-    geo_lat = models.DecimalField()
-    geo_long = models.DecimalField()
+    geo_lat = models.DecimalField(max_digits=8, decimal_places=6)
+    geo_long = models.DecimalField(max_digits=8, decimal_places=6)
 
 
 class ServiceRegion(models.Model):

@@ -24,8 +24,8 @@ class Malfunction(models.Model):
     """
         TODO:
         think about adding those but maybe the region will be enough:
-        geo_lat = models.DecimalField()
-        geo_long = models.DecimalField()
+        geo_lat = models.DecimalField(max_digits=8, decimal_places=6)
+        geo_long = models.DecimalField(max_digits=8, decimal_places=6)
     """
 
 

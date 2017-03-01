@@ -9,17 +9,17 @@ user_model = settings.AUTH_USER_MODEL
 
 
 class RoadCondition(models.Model):
+    region = models.ForeignKey(Region, null=True, on_delete=models.SET_NULL)
+    driver = models.ForeignKey(user_model, null=True, on_delete=models.SET_NULL)
     rc_desc = models.TextField()
     """
         TODO: take care of photos here
         also watch out for automatic datetime
-        geo_lat = models.DecimalField()
-        geo_long = models.DecimalField()
+        geo_lat = models.DDecimalField(max_digits=8, decimal_places=3)
+        geo_long = models.DecimalField(max_digits=8, decimal_places=3)
     """
     date_time = models.DateTimeField(auto_now_add=True)
-    accuracy = models.DecimalField(default=0)
-    region = models.ForeignKey(Region, on_delete=models.SET_NULL)
-    driver = models.ForeignKey(user_model, on_delete=models.SET_NULL)
+    accuracy = models.FloatField(default=0)  # is the post about RC correct
     """
         watch out for redundancy in accuracy!!!
         (maybe should be updated with adequate avg from comments table below)
