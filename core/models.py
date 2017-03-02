@@ -64,6 +64,7 @@ class VehicleType(models.Model):
 
 
 class Vehicle(models.Model):
+    user = models.ForeignKey(DriverProfile, on_delete=models.CASCADE)
     type = models.ForeignKey(VehicleType, on_delete=models.CASCADE)
     model = models.CharField(max_length=30)
     """
