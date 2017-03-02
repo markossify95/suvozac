@@ -81,9 +81,8 @@ class VehicleType(models.Model):
 
 
 class Vehicle(models.Model):
-    user = models.ForeignKey(DriverProfile, on_delete=models.CASCADE)
     type = models.ForeignKey(VehicleType, on_delete=models.CASCADE)
-    user = models.ForeignKey(user_model, null=True, on_delete=models.CASCADE)
+    user = models.ForeignKey(user_model, on_delete=models.CASCADE)
     model = models.CharField(max_length=30)
     """
         TODO: add all models to ensure equality between those and car makes
