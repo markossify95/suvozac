@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import (RoadCondition, RoadConditionComment)
 
-# Register your models here.
+admin.site.register(RoadCondition)
+admin.site.register(RoadConditionComment)

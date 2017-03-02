@@ -1,51 +1,38 @@
 from rest_framework import serializers
-from core.models import *
-from accidents.models import *
-from newsfeed import *
+from core.models import (CustomUser, DriverProfile, ServiceProfile)
 
 
-class VehicleTypeSerializer(serializers.ModelSerializer):
+#  These 3 will be used for adding new users
+class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = VehicleType
+        model = CustomUser
         fields = '__all__'
 
 
-class VehicleSerializer(serializers.ModelSerializer):
-    #ToDo
+class DriverProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Vehicle
+        model = DriverProfile
         fields = '__all__'
 
 
-class ServiceVehicleTypeSerializer(serializers.ModelSerializer):
-    #ToDo
+class ServiceProfileSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ServiceVehicleType
-        fields = ()
-
-
-class RegionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Region
+        model = ServiceProfile
         fields = '__all__'
 
 
-class ServiceRegionSerializer(serializers.ModelSerializer):
-    #ToDo
+# These two (DriverSerializer & ServiceSerializer) will be used for fetching appropriate results
+class DriverSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
     class Meta:
-        model = ServiceRegion
+        model = DriverProfile
         fields = '__all__'
 
 
-class MalfunctionTypeSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = MalfunctionType
-        fields = '__all__'
+class ServiceSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
 
-
-class ServiceMFTypeSerializer(serializers.ModelSerializer):
-    mf_type = MalfunctionTypeSerializer()
-    #ToDo
     class Meta:
-        model = ServiceMFType
+        model = ServiceProfile
         fields = '__all__'

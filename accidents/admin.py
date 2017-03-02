@@ -1,3 +1,8 @@
 from django.contrib import admin
+from .models import (
+    Malfunction, Application, SolvedMalfunction
+)
 
-# Register your models here.
+admin.site.register(Malfunction)
+admin.site.register(Application)
+admin.site.register(SolvedMalfunction)
