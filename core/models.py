@@ -6,6 +6,10 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from suvozac import settings
 
+# FOR LATER ON :D
+# from django.db.models.signals import post_save
+# from django.dispatch import receiver
+
 user_model = settings.AUTH_USER_MODEL
 
 
@@ -40,6 +44,19 @@ class ServiceProfile(models.Model):
     """
 
 
+"""
+@receiver(post_save, sender=user_model)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        ServiceProfile.objects.create(user=instance)
+
+
+@receiver(post_save, sender=user_model)
+def save_user_profile(sender, instance, **kwargs):
+    instance.profile.save()
+"""
+
+
 class DriverProfile(models.Model):
     user = models.OneToOneField(user_model, on_delete=models.CASCADE)
     driver_tel = models.CharField(max_length=20)
@@ -65,6 +82,7 @@ class VehicleType(models.Model):
 
 class Vehicle(models.Model):
     type = models.ForeignKey(VehicleType, on_delete=models.CASCADE)
+    user = models.ForeignKey(user_model, null=True, on_delete=models.CASCADE)
     model = models.CharField(max_length=30)
     """
         TODO: add all models to ensure equality between those and car makes
