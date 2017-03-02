@@ -82,6 +82,9 @@ class VehicleType(models.Model):
 
 class Vehicle(models.Model):
     type = models.ForeignKey(VehicleType, on_delete=models.CASCADE)
+    """
+    USER CAN'T BE NULL IN PRODUCTION, CHANGE IT ON DBMS CHANGE!!!!!! 'FALA, DULE.
+    """
     user = models.ForeignKey(user_model, null=True, on_delete=models.CASCADE)
     model = models.CharField(max_length=30)
     """
