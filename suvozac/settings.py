@@ -85,8 +85,16 @@ WSGI_APPLICATION = 'suvozac.wsgi.application'
 DEBUG = decouple.config('DEBUG', default=False, cast=bool)
 DATABASES = {
     'default': dj_database_url.config(
-        default=decouple.config('DATABASE_URL')
+       default=decouple.config('DATABASE_URL')
     )
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'suvozac',
+    #     'USER': 'mark',
+    #     'PASSWORD': 'suvozac123',
+    #     'HOST': 'localhost',
+    #     'PORT': '',
+    # }
 }
 
 # Password validation
