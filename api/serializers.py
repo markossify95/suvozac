@@ -1,8 +1,6 @@
 from rest_framework import serializers
+from core.models import (CustomUser, DriverProfile, ServiceProfile)
 from django.contrib.auth import hashers
-from core.models import *
-from accidents.models import *
-from newsfeed.models import *
 
 """
 Core serializers
