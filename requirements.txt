@@ -4,7 +4,9 @@ Django==1.10.5
 django-braces==1.11.0
 django-oauth-toolkit==0.12.0
 djangorestframework==3.5.4
+gunicorn==19.7.0
 oauthlib==2.0.1
+psycopg2==2.7
 python-decouple==3.0
 six==1.10.0
 whitenoise==3.3.0
