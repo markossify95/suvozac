@@ -9,6 +9,8 @@ from suvozac import settings
 # FOR LATER ON :D
 # from django.db.models.signals import post_save
 # from django.dispatch import receiver
+# from django.sessions import HUA
+# from django.sessions import bakaaa
 
 user_model = settings.AUTH_USER_MODEL
 
