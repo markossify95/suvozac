@@ -1,10 +1,16 @@
 from rest_framework import serializers
-from core.models import (CustomUser, DriverProfile, ServiceProfile)
+
+from accidents.models import Malfunction, Application, SolvedMalfunction
+from core.models import (CustomUser, DriverProfile, ServiceProfile, VehicleType, Vehicle, ServiceVehicleType, Region,
+                         ServiceRegion, MalfunctionType, ServiceMFType)
 from django.contrib.auth import hashers
+
+from newsfeed.models import RoadCondition, RoadConditionComment
 
 """
 Core serializers
 """
+
 
 # Todo odraditi "prefinjenije" serijalizere(pogotovu agregacija) za klijentske potrebe
 #  These 3 will be used for adding new users
@@ -143,6 +149,7 @@ class SolvedMalfunctionSerializer(serializers.ModelSerializer):
 """
 Newsfeed serializers
 """
+
 
 class RoadConditionSerializer(serializers.ModelSerializer):
     region = RegionSerializer()
