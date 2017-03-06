@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     url(r'^admin/', admin.site.urls),
+    url(r'^social-auth/', include('rest_framework_social_oauth2.urls')),
     url(r'^signup/$', SignUp.as_view(), name="sign_up"),
 ]
