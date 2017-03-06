@@ -1,10 +1,12 @@
 from rest_framework import serializers
-from core.models import *
-from accidents.models import *
-from newsfeed.models import *
+from core.models import (CustomUser, DriverProfile, ServiceProfile)
 from django.contrib.auth import hashers
 
+"""
+Core serializers
+"""
 
+# Todo odraditi "prefinjenije" serijalizere(pogotovu agregacija) za klijentske potrebe
 #  These 3 will be used for adding new users
 
 
@@ -67,11 +69,6 @@ class VehicleSerializer(serializers.ModelSerializer):
         fields = ('user', 'type', 'model', 'ccm', 'fuel_type', 'first_registration')
 
 
-"""
-ToDo srediti ovo da vraca malo bolje podatke
-"""
-
-
 class ServiceVechileSerializer(serializers.ModelSerializer):
     service = ServiceSerializer()
     vehicle_tupe = VehicleTypeSerializer()
@@ -85,11 +82,6 @@ class RegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
         fields = '__all__'
-
-
-"""
-ToDo ista spika kao ovo gore
-"""
 
 
 class ServiceRegionSerializer(serializers.ModelSerializer):
@@ -122,4 +114,49 @@ Accidents serializers
 
 
 class MalfunctionSerializer(serializers.ModelSerializer):
-    pass
+    vehicle = VehicleSerializer()
+    region = RegionSerializer()
+    mf_type = MalfunctionTypeSerializer()
+
+    class Meta:
+        model = Malfunction
+        fields = ('vehicle', 'region', 'mf_type', 'date_time', 'mf_desc')
+
+
+class ApplicationSerializer(serializers.ModelSerializer):
+    service = ServiceSerializer()
+    malfunction = MalfunctionSerializer()
+
+    class Meta:
+        model = Application
+        fields = ('service', 'malfunction', 'date_time')
+
+
+class SolvedMalfunctionSerializer(serializers.ModelSerializer):
+    application = ApplicationSerializer()
+
+    class Meta:
+        model = SolvedMalfunction
+        fields = ('application', 'repair_date', 'repair_desc', 'date_time')
+
+
+"""
+Newsfeed serializers
+"""
+
+class RoadConditionSerializer(serializers.ModelSerializer):
+    region = RegionSerializer()
+    driver = DriverSerializer()
+
+    class Meta:
+        model = RoadCondition
+        fields = ('region', 'driver', 'rc_desc', 'date_time', 'accuracy')
+
+
+class RoadConditionCommentSerializer(serializers.ModelSerializer):
+    user = DriverSerializer()
+    road_condition = RoadConditionSerializer()
+
+    class Meta:
+        model = RoadConditionComment
+        fields = ('user', 'road_condition', 'true', 'additional_info', 'date_time')
