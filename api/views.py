@@ -16,6 +16,9 @@ class SignUp(generics.CreateAPIView):
     permission_classes = (IsAuthenticatedOrCreate,)
 
 
+
+
+
 """
 class UserViewSet(viewsets.ModelViewSet):
     """  # A viewset for viewing and editing user instances.
